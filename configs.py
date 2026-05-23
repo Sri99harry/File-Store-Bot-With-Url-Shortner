@@ -12,8 +12,8 @@ class Config(object):
     DB_CHANNEL = int(os.environ.get("DB_CHANNEL", ""))
     
     # LEAVE THESE COMPLETELY BLANK TO FORCE FULL LINKS ALWAYS
-    SHORTLINK_URL = "shrinkme.io"
-    SHORTLINK_API = "ae757396007e817fdc07c1940e84cd423fb246b3" 
+    SHORTLINK_URL = "shrtfly.com"
+    SHORTLINK_API = "9cc2a811648fd1a6af04ad3c6d786ae6" 
     
     BOT_OWNER = int(os.environ.get("BOT_OWNER", ""))
     DATABASE_URL = os.environ.get("DATABASE_URL", "")
