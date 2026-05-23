@@ -29,4 +29,4 @@ WORKDIR /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # This is the line that actually runs your bot
-CMD ["python3", "bot.py"]
+CMD ["python3", "-u", "bot.py"]
