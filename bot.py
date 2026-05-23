@@ -93,7 +93,7 @@ async def start(bot: Client, cmd: Message):
         await cmd.reply_text("Sorry, You are banned.")
         return
     if Config.UPDATES_CHANNEL and Config.UPDATES_CHANNEL.strip() != "":
-    back = await handle_force_sub(bot, cmd)
+     back = await handle_force_sub(bot, cmd)
     if back == 400:
         return
     
