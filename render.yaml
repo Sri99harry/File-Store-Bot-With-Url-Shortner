@@ -1,3 +1,26 @@
-build:
-  docker:
-    worker: Dockerfile
+services:
+  - type: web
+    name: filestore-bot
+    env: python
+    repo: https://github.com/Sri99harry/File-Store-Bot-With-Url-Shortner
+    branch: main
+    plan: free
+    buildCommand: pip3 install -U -r requirements.txt
+    startCommand: gunicorn app:app & python3 bot.py
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: BOT_USERNAME
+        value: Sri99harry
+      - key: DB_CHANNEL
+        sync: false
+      - key: LOG_CHANNEL
+        sync: false
+      - key: DATABASE_URL
+        value: mongodb+srv://mybotadmin:yGVqsMyuXyDJJKLf@cluster0.zy7ae39.mongodb.net/?appName=Cluster0
+      - key: BOT_OWNER
+        sync: false
