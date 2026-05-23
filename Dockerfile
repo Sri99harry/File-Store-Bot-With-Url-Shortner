@@ -19,11 +19,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get autoremove \
     && rm -rf /var/lib/apt/lists/*
 
-RUN dpkg-reconfigure locales
-RUN pip install --no-cache-dir setuptools wheel yarl multidict
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# ... (all your existing RUN commands above)
+
 COPY . /app
 WORKDIR /app
 
+# Ensure requirements are installed BEFORE copying the app files 
+# to optimize the build (caching)
+RUN pip install --no-cache-dir -r requirements.txt
+
+# This is the line that actually runs your bot
 CMD ["python3", "bot.py"]
