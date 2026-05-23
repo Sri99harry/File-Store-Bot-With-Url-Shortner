@@ -20,6 +20,9 @@ from handlers.helpers import b64_to_str, str_to_b64
 from handlers.check_user_status import handle_user_status
 from handlers.force_sub_handler import handle_force_sub, get_invite_link
 from handlers.broadcast_handlers import main_broadcast_handler
+from pymongo import MongoClient
+mongo_client = MongoClient(Config.DATABASE_URL)
+files_col = mongo_client["filestore"]["files"]
 
 MediaList = {}
 
@@ -330,5 +333,42 @@ async def button(bot: Client, cmd: CallbackQuery):
         await cmd.answer()
     except QueryIdInvalid:
         pass
+@Bot.on_message(filters.private & filters.text & ~filters.command(["start", "broadcast", "status", "ban_user", "unban_user", "banned_users", "clear_batch", "search"]))
+async def search_by_text(bot: Client, cmd: Message):
+    if cmd.from_user.id in Config.BANNED_USERS:
+        return
+    
+    query = cmd.text.strip()
+    if len(query) < 2:
+        return
+
+    results = list(files_col.find(
+        {"file_name": {"$regex": query, "$options": "i"}}
+    ).limit(10))
+
+    if not results:
+        await cmd.reply_text(
+            f"❌ No results found for **{query}**\n\n"
+            f"Try searching with different keywords!",
+            quote=True
+        )
+        return
+
+    buttons = []
+    for doc in results:
+        name = doc.get("file_name", "Unknown")
+        # trim long names for button
+        display_name = name[:50] + "..." if len(name) > 50 else name
+        link = doc.get("short_link", "")
+        buttons.append([InlineKeyboardButton(f"🎬 {display_name}", url=link)])
+
+    await cmd.reply_text(
+        f"🔍 **Results for:** `{query}`\n\n"
+        f"**{len(results)} file(s) found!**\n"
+        f"Click a button to get the file 👇",
+        reply_markup=InlineKeyboardMarkup(buttons),
+        quote=True,
+        disable_web_page_preview=True
+    )
 
 Bot.run()
