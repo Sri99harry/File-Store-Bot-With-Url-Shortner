@@ -2,7 +2,7 @@ services:
   - type: web
     name: filestore-bot
     env: python
-    repo: https://github.com/Sri99harry/File-Store-Bot-With-Url-Shortner
+    repo: Sri99harry/File-Store-Bot-With-Url-Shortner
     branch: main
     plan: free
     buildCommand: pip3 install -U -r requirements.txt
