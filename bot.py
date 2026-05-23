@@ -105,15 +105,23 @@ async def start(bot: Client, cmd: Message):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
                 [
-                    [InlineKeyboardButton("Updates Channel", url="https://t.me/VJ_Bots")],
                     [
-                        InlineKeyboardButton("About Bot", callback_data="aboutbot"),
-                        InlineKeyboardButton("About Dev", callback_data="aboutdevs"),
-                        InlineKeyboardButton("Close 🚪", callback_data="closeMessage")
+                        InlineKeyboardButton("🎬 Hindi Channel", url="https://t.me/+_yWrbBvH0hAyZjBl"),
+                        InlineKeyboardButton("💬 Hindi Group", url="https://t.me/+RIvcYWGUv7lhY2M1")
                     ],
                     [
-                        InlineKeyboardButton("Support Group", url="https://t.me/VJ_Bot_Disscussion"),
-                        InlineKeyboardButton("YouTube Channel", url="https://youtube.com/@Tech_VJ")
+                        InlineKeyboardButton("🎬 Telugu Channel", url="https://t.me/+gag5RDQoYxU3ZTll"),
+                        InlineKeyboardButton("💬 Telugu Group", url="https://t.me/+wNQV9DzJDtY1ZDU9")
+                    ],
+                    [
+                        InlineKeyboardButton("🎬 Tamil Channel", url="https://t.me/+pgf6HV8GskgyMzBl"),
+                        InlineKeyboardButton("💬 Tamil Group", url="https://t.me/+a43iEYYpF6lkMTRl")
+                    ],
+                    [
+                        InlineKeyboardButton("🔍 Search a Video", switch_inline_query_current_chat="")
+                    ],
+                    [
+                        InlineKeyboardButton("Close 🚪", callback_data="closeMessage")
                     ]
                 ]
             )
