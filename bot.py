@@ -351,7 +351,10 @@ async def search_by_text(bot: Client, cmd: Message):
         return
 
     results = list(files_col.find(
-        {"file_name": {"$regex": query, "$options": "i"}}
+        {"$or": [
+            {"file_name": {"$regex": query, "$options": "i"}},
+            {"caption": {"$regex": query, "$options": "i"}}
+        ]}
     ).limit(10))
 
     if not results:
