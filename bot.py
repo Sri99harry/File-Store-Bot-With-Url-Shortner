@@ -2,6 +2,8 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
+print("--- BOT IS STARTING, CHECKING CONNECTION ---")
+
 import os
 import asyncio
 import traceback
