@@ -34,8 +34,8 @@ async def get_shortlink(url):
         api_url = f"https://{Config.SHORTLINK_URL}/api?api={Config.SHORTLINK_API}&url={url}"
         res = requests.get(api_url, timeout=10)
         res_json = res.json()
-        if "shortened_Url" in res_json:
-            return res_json["shortened_Url"]
+        if "shortenedUrl" in res_json:
+            return res_json["shortenedUrl"]
         return url
     except Exception:
         return url
@@ -289,7 +289,7 @@ async def button(bot: Client, cmd: CallbackQuery):
                 await cmd.message.edit(text="**I like Your Smartness But Don't Be Oversmart! 😑**\n\n", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🤖 Join Updates Channel", url=invite_link.invite_link)], [InlineKeyboardButton("🔄 Refresh 🔄", callback_data="refreshmeh")]]))
                 return
             except Exception:
-                await cmd.message.edit(text="Something went Wrong. Contact my [𝙎𝙪𝙥𝙥𝙤𝙧𝙩 𝙂𝙧𝙤𝙪𝙥](https://t.me/VJ_Bot_Disscussion).", disable_web_page_preview=True)
+                await cmd.message.edit(text="Something went Wrong. Contact my [𝙎𝙪𝙥𝙥𝙤𝙧𝙩 𝙂𝙧𝙤𝙪坦](https://t.me/VJ_Bot_Disscussion).", disable_web_page_preview=True)
                 return
         await cmd.message.edit(text=Config.HOME_TEXT.format(cmd.message.chat.first_name, cmd.message.chat.id), disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("Updates Channel", url="https://t.me/VJ_Botz"), InlineKeyboardButton("Support Group", url="https://t.me/VJ_Bot_Disscussion")], [InlineKeyboardButton("About Bot", callback_data="aboutbot"), InlineKeyboardButton("About Dev", callback_data="aboutdevs")]]))
     elif cb_data.startswith("ban_user_"):
