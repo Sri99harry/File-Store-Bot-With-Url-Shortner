@@ -145,9 +145,9 @@ async def main(bot: Client, message: Message):
     if message.chat.type == enums.ChatType.PRIVATE:
         await add_user_to_database(bot, message)
         if Config.UPDATES_CHANNEL and Config.UPDATES_CHANNEL.strip() != "":
-    back = await handle_force_sub(bot, message)
-    if back == 400:
-        return
+        back = await handle_force_sub(bot, cmd)
+        if back == 400:
+            return
         if message.from_user.id in Config.BANNED_USERS:
             await message.reply_text("Sorry, You are banned!\n\nContact [𝙎𝙪𝙥𝙥𝙤𝙧𝙩 𝙂𝙧𝙤𝙪𝙥](https://t.me/VJ_Bot_Disscussion)", disable_web_page_preview=True)
             return
