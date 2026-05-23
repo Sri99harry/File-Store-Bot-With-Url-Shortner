@@ -34,8 +34,8 @@ async def get_shortlink(url):
         api_url = f"https://{Config.SHORTLINK_URL}/api?api={Config.SHORTLINK_API}&url={url}"
         res = requests.get(api_url, timeout=10)
         res_json = res.json()
-        if "shortenedUrl" in res_json:
-            return res_json["shortenedUrl"]
+        if "shortened_Url" in res_json:
+            return res_json["shortened_Url"]
         return url
     except Exception:
         return url
