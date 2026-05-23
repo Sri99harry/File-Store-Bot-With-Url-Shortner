@@ -26,7 +26,7 @@ WORKDIR /app
 
 # Ensure requirements are installed BEFORE copying the app files 
 # to optimize the build (caching)
-RUN pip install --no-cache-dir -r requirements.txt
+RUN python3 -c "import pyrogram; print('Pyrogram is installed correctly')"
 
 # This is the line that actually runs your bot
 CMD ["python3", "-u", "bot.py"]
